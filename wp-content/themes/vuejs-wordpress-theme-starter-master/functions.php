@@ -1,4 +1,8 @@
 <?php
+
+// This theme uses post thumbnails
+add_theme_support( 'post-thumbnails' );
+
 // Remove all default WP template redirects/lookups
 remove_action( 'template_redirect', 'redirect_canonical' );
 

@@ -1,8 +1,25 @@
 <template>
 	<div class="hero-body">
+		<div class="feauredImage" v-if="media.full">
+			<!-- <h1>{{ post._embedded['wp:featuredmedia']['0'].source_url }}</h1>
+			<h1>{{ post._embedded['wp:featuredmedia']['0'].media_details.sizes.full.source_url }}</h1>
+			<h1>{{ post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url }}</h1> -->
+
+			<picture>
+				<source media="(min-width: 1025px)" :srcset="media.full">
+				<img :src="media.large" alt="Flowers">
+			</picture>
+			<div class="absoluteContainerWrapper">
+				<div class="container">
+					<div v-if="post.title">
+						<h1 class="title">{{ post.title.rendered }}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div v-if="post.title">
-				<h1 class="title">{{ post.title.rendered }}</h1>
+				<h1 class="title" v-if="!media.full">{{ post.title.rendered }}</h1>
 				<div v-html="post.content.rendered" class="content"></div>
 				<router-link to="/" class="button is-link">Go to Home</router-link>
 			</div>
@@ -17,8 +34,13 @@
 		data(){
 			return {
 				post: [],
+				media: {
+					full: '',
+					large: ''
+				},
 				// api: 'http://boris-badurina.from.hr/marko/wp-json/markers/v1/post2/'
-				api: process.env.VUE_APP_URL_SERVICES + 'posts/?slug='
+				// api: process.env.VUE_APP_URL_SERVICES + 'posts/?slug='
+				apiPostCall: process.env.VUE_APP_URL_SERVICES + 'posts/?slug=' + this.slug + '&_embed'
 			}
 		},
 		props: [
@@ -31,12 +53,16 @@
 
 
 			return new Promise((resolve, reject) => {
-				console.log(this.api + this.slug);
-				axios.get(this.api + this.slug)
+				console.log(this.apiPostCall);
+				axios.get(this.apiPostCall)
 					.then(response => {
 					// JSON responses are automatically parsed.
 					this.post = response.data[0];
-					console.log(response.data);
+					if ( this.post._embedded['wp:featuredmedia'] !== undefined ) {
+						this.media.full = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.article_featured.source_url;
+						this.media.large = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url;
+					}
+					console.log(response.data[0]);
 					resolve();
 				})
 				.catch(e => {
