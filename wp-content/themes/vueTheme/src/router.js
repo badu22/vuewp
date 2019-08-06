@@ -24,7 +24,7 @@ export default new Router({
 			// component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
 		},
 		{
-			path: ':catSlug/:slug',
+			path: '/:slug',
 			name: 'single',
 			component: Single,
 			props: true
