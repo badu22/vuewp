@@ -1,10 +1,6 @@
 <template>
 	<div class="hero-body">
 		<div class="feauredImage" v-if="media.full">
-			<!-- <h1>{{ post._embedded['wp:featuredmedia']['0'].source_url }}</h1>
-			<h1>{{ post._embedded['wp:featuredmedia']['0'].media_details.sizes.full.source_url }}</h1>
-			<h1>{{ post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url }}</h1> -->
-
 			<picture>
 				<source media="(min-width: 1025px)" :srcset="media.full">
 				<img :src="media.large" alt="Flowers">
@@ -52,7 +48,7 @@
 			console.log(process.env);
 
 
-			return new Promise((resolve, reject) => {
+			// return new Promise((resolve, reject) => {
 				console.log(this.apiPostCall);
 				axios.get(this.apiPostCall)
 					.then(response => {
@@ -63,13 +59,13 @@
 						this.media.large = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url;
 					}
 					console.log(response.data[0]);
-					resolve();
+					// resolve();
 				})
 				.catch(e => {
 					this.errors.push(e);
-					reject();
+					// reject();
 				});
-			});
+			// });
 		}
 
 	}
