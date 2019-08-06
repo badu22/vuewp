@@ -2,6 +2,7 @@
   	<div class="hero-body">
 		<div class="container">
 			<div v-if="post.title">
+				<h1>222222222</h1>
 				<h1 class="title">{{ post.title.rendered }}</h1>
 				<div v-html="post.content.rendered" class="content"></div>
 				<router-link to="/" class="button is-link">Go to Home</router-link>

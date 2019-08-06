@@ -10,7 +10,8 @@
 					<div class="content"><p>
 						in category <a :href="base+post.cdetails[0].fullSlug">{{ post.cdetails[0].name }}</a>
 					</p></div>
-					<div><a :href="base+post.cdetails[0].slug+post.slug" class="button is-link">Show more</a></div>
+					<!-- <div><a :href="base+post.cdetails[0].slug+post.slug" class="button is-link">Show more</a></div> -->
+					<div><a :href="base+post.slug" class="button is-link">Show more</a></div>
 				</div>
 			</div>
 		</div>
