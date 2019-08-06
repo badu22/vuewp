@@ -1,6 +1,5 @@
 <template>
-  	<div class="hero-body">
-		  <h1>jfhghghghgh</h1>
+	<div class="hero-body">
 		<div class="container">
 			<div v-if="post.title">
 				<h1 class="title">{{ post.title.rendered }}</h1>
@@ -9,7 +8,7 @@
 			</div>
 			<div v-else>loading</div>
 		</div>
-  	</div>
+	</div>
 </template>
 <script>
 	import axios from "axios";
