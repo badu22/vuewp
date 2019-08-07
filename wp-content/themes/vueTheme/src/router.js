@@ -30,7 +30,7 @@ export default new Router({
 			props: true
 		},
 		{
-			path: '/categories/:slug',
+			path: '/category/:slug',
 			name: 'categories',
 			component: Categories,
 			props: true

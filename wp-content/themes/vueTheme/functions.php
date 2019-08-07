@@ -1,5 +1,36 @@
 <?php
 
+// This theme uses wp_nav_menu() in two locations.
+register_nav_menus(
+	array(
+		'main-navigation' => __( 'Primary', 'vuewp' ),
+		// 'menu-1' => __( 'Primary', 'vuewp' ),
+		// 'footer' => __( 'Footer Menu', 'twentynineteen' ),
+		// 'social' => __( 'Social Links Menu', 'twentynineteen' ),
+	)
+);
+
+/*
+*
+* add api route for menus
+* create custom function to return nav menu
+* https://website.com/wp-json/wp/v2/menu
+*
+*/
+function custom_wp_menu() {
+    // Replace your menu name, slug or ID carefully
+    return wp_get_nav_menu_items('Main Navigation');
+}
+
+// create new endpoint route
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'wp/v2', 'menu', array(
+        'methods' => 'GET',
+        'callback' => 'custom_wp_menu',
+    ) );
+});
+
+
 /*
 * Enable support for Post Thumbnails on posts and pages.
 *

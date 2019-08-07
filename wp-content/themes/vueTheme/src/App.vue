@@ -15,8 +15,11 @@
 					</div>
 					<div :class="{'is-active':toggleNav}" id="navbarMenuHeroB" class="navbar-menu">
 						<div class="navbar-end">
-							<router-link to="/" class="navbar-item">Home</router-link> <!-- is-active-->
-							<router-link to="/be-like-water" class="navbar-item">Be like water</router-link>
+							<div v-for="menuItem in getManuState" :key="menuItem.ID">
+								<router-link :to="menuItem.url" class="navbar-item" v-html="menuItem.title"></router-link>
+							</div>
+							<!-- <router-link to="/" class="navbar-item">Home</router-link> is-active
+							<router-link to="/be-like-water" class="navbar-item">Be like water</router-link> -->
 							<!-- <a class="navbar-item">
 								Documentation
 							</a>
@@ -32,47 +35,52 @@
 					</div>
 				</div>
 			</nav>
-  		</div>
+		</div>
 
-		<router-view/>
+		<!-- <transition
+			name="fade"
+			mode="out-in"
+		> -->
+			<router-view/>
+		<!-- </transition> -->
 
 	</section>
 </template>
 
 
 <script>
+	import { mapGetters, mapActions } from 'vuex';
 	export default {
 		name: 'app',
-		 data () {
+		data () {
 			return {
-				toggleNav: false
+				toggleNav: false,
+				mainMenuItems: []
 			};
 		},
 
+		created () {
+			this.getMenu();
+
+			this.mainMenuItems = this.getManuState;
+
+		},
+
+		computed: {
+			...mapGetters(['getManuState'])
+		},
+
 		methods: {
+			...mapActions(['getMenu']),
+
 			toggleNavFn () {
 				this.toggleNav = !this.toggleNav;
-				// // Get all "navbar-burger" elements
-				// const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+			}
+		},
 
-				// // Check if there are any navbar burgers
-				// if ($navbarBurgers.length > 0) {
-
-				// 	// Add a click event on each of them
-				// 	$navbarBurgers.forEach( el => {
-				// 		el.addEventListener('click', () => {
-
-				// 			// Get the target from the "data-target" attribute
-				// 			const target = el.dataset.target;
-				// 			const $target = document.getElementById(target);
-
-				// 			// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-				// 			el.classList.toggle('is-active');
-				// 			$target.classList.toggle('is-active');
-
-				// 		});
-				// 	});
-				// }
+		watch:{
+			$route (){
+				this.toggleNav = false;
 			}
 		}
 	};

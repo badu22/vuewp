@@ -11862,6 +11862,9 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
       border-color: #333;
       background: rgba(51, 51, 51, 0.05); }
 
+body {
+  background-color: #209cee; }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11891,6 +11894,9 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
 
 .navbar-item {
   height: 52px; }
+  @media screen and (max-width: 1023px) {
+    .navbar-item {
+      line-height: 38px; } }
 
 @media screen and (max-width: 1023px) {
   .navbar-menu.is-active {
@@ -11909,9 +11915,21 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   color: #fff; }
 
 .hero-body {
+  position: relative;
   border-top: 1px #fff solid; }
   .hero-body:first-child {
     border-top: none; }
+
+.backgroundImage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; }
+  .backgroundImage img {
+    height: 100%;
+    width: auto;
+    opacity: .1; }
 
 .feauredImage {
   margin: -9rem -1.5rem 1rem -1.5rem;

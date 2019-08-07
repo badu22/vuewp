@@ -34,7 +34,6 @@
 					full: '',
 					large: ''
 				},
-				// api: 'http://boris-badurina.from.hr/marko/wp-json/markers/v1/post2/'
 				// api: process.env.VUE_APP_URL_SERVICES + 'posts/?slug='
 				apiPostCall: process.env.VUE_APP_URL_SERVICES + 'posts/?slug=' + this.slug + '&_embed'
 			}
@@ -47,25 +46,20 @@
 
 			console.log(process.env);
 
-
-			// return new Promise((resolve, reject) => {
-				console.log(this.apiPostCall);
-				axios.get(this.apiPostCall)
-					.then(response => {
-					// JSON responses are automatically parsed.
-					this.post = response.data[0];
-					if ( this.post._embedded['wp:featuredmedia'] !== undefined ) {
-						this.media.full = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.article_featured.source_url;
-						this.media.large = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url;
-					}
-					console.log(response.data[0]);
-					// resolve();
-				})
-				.catch(e => {
-					this.errors.push(e);
-					// reject();
-				});
-			// });
+			console.log(this.apiPostCall);
+			axios.get(this.apiPostCall)
+				.then(response => {
+				// JSON responses are automatically parsed.
+				this.post = response.data[0];
+				if ( this.post._embedded['wp:featuredmedia'] !== undefined ) {
+					this.media.full = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.article_featured.source_url;
+					this.media.large = this.post._embedded['wp:featuredmedia']['0'].media_details.sizes.large.source_url;
+				}
+				console.log(response.data[0]);
+			})
+			.catch(e => {
+				this.errors.push(e);
+			});
 		}
 
 	}

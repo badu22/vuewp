@@ -29,7 +29,9 @@ $colors: map-merge($colors, $addColors);
 
 
 
-
+body {
+	background-color: #209cee;
+}
 
 #app {
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -62,6 +64,9 @@ $colors: map-merge($colors, $addColors);
 }
 .navbar-item {
 	height: 52px;
+	@media screen and (max-width: 1023px) {
+		line-height: 38px;
+	}
 }
 
 @media screen and (max-width: 1023px) {
@@ -87,8 +92,17 @@ a.navbar-item.is-active,
 // .hero-body.is-link { background-color: #43a1df; }
 
 .hero-body {
+	position: relative;
 	border-top: 1px #fff solid;
 	&:first-child { border-top: none; }
+}
+
+//post list
+.backgroundImage {
+	position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+	img {
+		height: 100%; width: auto; opacity: .1;
+	}
 }
 
 //single
