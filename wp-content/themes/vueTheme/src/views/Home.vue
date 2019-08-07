@@ -77,7 +77,8 @@
 					citem.name = cat.name;
 					citem.id = cat.id;
 					citem.slug = cat.slug+'/';
-					citem.fullSlug = 'category/' + cat.slug;
+					// citem.fullSlug = 'category/' + cat.slug;
+					citem.fullSlug = cat.link.replace(process.env.VUE_APP_URL_APP,'');
 					citem.link = cat.link;
 
 					this.edata.map( (item) => {

@@ -41,7 +41,7 @@
 			name="fade"
 			mode="out-in"
 		> -->
-			<router-view/>
+			<router-view :key="$route.fullPath" />
 		<!-- </transition> -->
 
 	</section>
@@ -75,7 +75,23 @@
 
 			toggleNavFn () {
 				this.toggleNav = !this.toggleNav;
-			}
+			},
+
+			// goToHome () {
+			// 	if (this.$route.name === 'Home') {
+			// 		// this.$eventHub.$emit('sameRouteClicked');
+			// 	} else {
+			// 		this.$router.push({ name: 'Home' });
+			// 	}
+			// },
+
+			// goToUrl (itemPath) {
+			// 	if (itemPath === this.$route.path) {
+			// 		// this.$eventHub.$emit('sameRouteClicked');
+			// 	} else {
+			// 		this.$router.push({ path: itemPath });
+			// 	}
+			// }
 		},
 
 		watch:{

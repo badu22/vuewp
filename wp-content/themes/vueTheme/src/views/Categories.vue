@@ -25,43 +25,31 @@
 				cname: null,
 				posts: [],
 				base: process.env.BASE_URL,
-				api1: process.env.VUE_APP_URL_SERVICES + `categories?slug=${this.slug}`,
+				api1: process.env.VUE_APP_URL_SERVICES + `categories?slug=${this.section}`,
 				api2: process.env.VUE_APP_URL_SERVICES + `posts?categories=`,
-				//api: `http://boris-badurina.from.hr/marko/wp-json/wp/v2/posts?filter[category_name]=${this.slug}`,
-			/*
-				solution  2 poziva
-				1 = http://boris-badurina.from.hr/marko/wp-json/wp/v2/categories?slug=formula
-				2 = http://www.boris-badurina.from.hr/marko/wp-json/wp/v2/posts?categories=5
-
-				http://www.boris-badurina.from.hr/marko/wp-json/wp/v2/posts?categories=4
-				http://www.boris-badurina.from.hr/marko/wp-json/wp/v2/posts?categories_name=sport
-				/posts?filter[category_name]=MyCategory
-				Posts: sitename.com/wp-json/wp/v2/posts?slug=post-slug
-				Pages: sitename.com/wp-json/wp/v2/pages?slug=page-slug
-				Custom post type: sitename.com/wp-json/wp/v2/POST_TYPE?slug=post-slug
-			*/
 				qposts: '/posts',
 				qcategory: '/categories/'
 			}
 		},
 		props: [
-			'slug'
+			'section',
+			'parentsection'
 		],
 		mounted() {
-
+			// console.log(this.section, this.parentsection);
 			axios.get(this.api1)
 				.then(response => {
 				// JSON responses are automatically parsed.
 				this.cid = response.data[0].id;
 				this.cname = response.data[0].name;
-				console.log(this.cid);
-				console.log(this.api2 + this.cid);
+				// console.log(this.cid);
+				// console.log(this.api2 + this.cid);
 
 				axios.get(this.api2 + this.cid)
 					.then(response => {
 					// JSON responses are automatically parsed.
 					this.posts = response.data;
-					console.log(this.posts);
+					// console.log(this.posts);
 				})
 				.catch(e => {
 					this.errors.push(e);
@@ -82,6 +70,12 @@
 				}
 			}
 		}
+
+		// watch:{
+		// 	$route (to, from){
+		// 		// console.log(to, from);
+		// 	}
+		// }
 	}
 </script>
 
