@@ -8,7 +8,7 @@
 			<div class="container">
 				<p class="title">{{ post.title.rendered }}</p>
 				<div class="content" v-html="post.content.rendered"></div>
-				<div><a :href="base+post.slug" class="button is-link">Show more</a></div>
+				<div><a :href="base+croute+post.id+'/'+post.slug" class="button is-link">Show more</a></div>
 			</div>
 		</div>
 
@@ -23,6 +23,7 @@
 				loading: true,
 				cid: null,
 				cname: null,
+				croute: null,
 				posts: [],
 				base: process.env.BASE_URL,
 				api1: process.env.VUE_APP_URL_SERVICES + `categories?slug=${this.section}`,
@@ -42,8 +43,9 @@
 				// JSON responses are automatically parsed.
 				this.cid = response.data[0].id;
 				this.cname = response.data[0].name;
+				this.croute = response.data[0].link.replace(process.env.VUE_APP_URL_APP+'category/','');
 				// console.log(this.cid);
-				// console.log(this.api2 + this.cid);
+				// console.log(response.data[0]);
 
 				axios.get(this.api2 + this.cid)
 					.then(response => {

@@ -32,12 +32,16 @@ export default new Vuex.Store({
 						let item = {};
 						item.ID = menuItem.ID;
 						item.title = menuItem.title;
-						item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP,'/');
+						item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP+'category/','/');
+
+						console.log(menuItem.url);
+						console.log(item.url);
+
 						navdata.push(item);
 					});
 
 					commit('setMenu', navdata);
-					// console.log(response.data);
+					console.log(response.data);
 				})
 				.catch(error => {
 					this.errors.push(error);

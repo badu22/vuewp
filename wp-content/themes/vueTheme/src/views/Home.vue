@@ -14,10 +14,10 @@
 					<p class="title">{{ post.title }}</p>
 					<div class="content" v-html="post.excerpt"></div>
 					<div class="content"><p>
-						in category <a :href="base+post.cdetails[0].fullSlug">{{ post.cdetails[0].name }}</a>
+						in category <a :href="base+post.cdetails[0].shortSlug">{{ post.cdetails[0].name }}</a>
 					</p></div>
-					<!-- <div><a :href="base+post.cdetails[0].slug+post.slug" class="button is-link">Show more</a></div> -->
-					<div><a :href="base+post.slug" class="button is-link">Show more</a></div>
+					<!-- <div><a :href="base+post.slug" class="button is-link">Show more</a></div> -->
+					<div><a :href="base+post.cdetails[0].shortSlug+post.id+'/'+post.slug" class="button is-link">Show more</a></div>
 				</div>
 			</div>
 		</div>
@@ -57,6 +57,7 @@
 					let item = {};
 					item.title = post.title.rendered;
 					item.slug = post.slug;
+					item.id = post.id;
 					item.content = post.content.rendered;
 					item.excerpt = post.excerpt.rendered;
 					item.featuredImage = ("wp:featuredmedia" in post._embedded) === false ? null : post._embedded['wp:featuredmedia']['0'].media_details.sizes.article_featured.source_url;
@@ -77,18 +78,17 @@
 					citem.name = cat.name;
 					citem.id = cat.id;
 					citem.slug = cat.slug+'/';
-					// citem.fullSlug = 'category/' + cat.slug;
+					citem.shortSlug = cat.link.replace(process.env.VUE_APP_URL_APP+'category/','');
 					citem.fullSlug = cat.link.replace(process.env.VUE_APP_URL_APP,'');
 					citem.link = cat.link;
 
 					this.edata.map( (item) => {
-						// console.log('item.id', item);
 						if ( cat.id === item.cid ) {
 							item.cdetails.push(citem);
 						}
 					});
 				});
-				// console.log('fin', this.edata);
+				console.log('fin', this.edata);
 			})).finally(this.loading = false);
 
 
