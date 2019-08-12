@@ -1,4 +1,4 @@
-# markers
+# vueTheme
 
 ## Project setup
 ```
@@ -13,11 +13,9 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
 
-### Run your tests
-```
-npm run test
+## build for local setup from .env.local
+npm run build:local  
 ```
 
 ### Lints and fixes files
