@@ -14,7 +14,7 @@ npm run serve
 ```
 npm run build
 
-## build for local setup from .env.local
+// build for local setup from .env.local
 npm run build:local  
 ```
 
