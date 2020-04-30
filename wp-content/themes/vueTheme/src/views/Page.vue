@@ -25,6 +25,9 @@
 		props: [
 			'slug'
 		],
+		created () {
+			console.log('1111111111111111111111111');
+		},
 		mounted() {
 
 			console.log(process.env);

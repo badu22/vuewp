@@ -10,7 +10,7 @@
 <body>
   <div id="app"></div>
   <?php wp_footer(); ?>
-  <!-- <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/vueTheme/dist/chunk-vendors.js"></script>
-  <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/vueTheme/dist/app.js"></script> -->
+ <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/vueTheme/dist/chunk-vendors.js"></script>
+  <script type="text/javascript" src="<?php bloginfo('url'); ?>/wp-content/themes/vueTheme/dist/app.js"></script>  <!-- -->
 </body>
 </html>

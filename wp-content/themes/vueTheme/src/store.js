@@ -32,15 +32,22 @@ export default new Vuex.Store({
 						let item = {};
 						item.ID = menuItem.ID;
 						item.title = menuItem.title;
-						item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP+'category/','/');
-
-						console.log(menuItem.url);
-						console.log(item.url);
+						if (menuItem.object === 'category') {
+							item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP+'category/','/');
+						}
+						else if (menuItem.object === 'page') {
+							console.log(process.env.VUE_APP_URL_APP);
+							item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP, menuItem.ID+'/');
+						}
+						else {
+							item.url = menuItem.url.replace(process.env.VUE_APP_URL_APP,'/');
+						}
 
 						navdata.push(item);
 					});
 
 					commit('setMenu', navdata);
+					console.log(navdata);
 					console.log(response.data);
 				})
 				.catch(error => {

@@ -16,6 +16,7 @@
 					<div :class="{'is-active':toggleNav}" id="navbarMenuHeroB" class="navbar-menu">
 						<div class="navbar-end">
 							<div v-for="menuItem in getManuState" :key="menuItem.ID">
+								<!-- <p>{{ menuItem }}</p> -->
 								<router-link :to="menuItem.url" class="navbar-item" v-html="menuItem.title"></router-link>
 							</div>
 							<!-- <router-link to="/" class="navbar-item">Home</router-link> is-active
@@ -63,6 +64,8 @@
 			this.getMenu();
 
 			this.mainMenuItems = this.getManuState;
+
+			console.log(this.getManuState);
 
 		},
 

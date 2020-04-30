@@ -25,7 +25,7 @@ export default new Router({
 			// component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
 		},
 		{
-			path: '/:parentsection?/:section',
+			path: '/:parentsection(\\D+)?/:section(\\D+)',
 			name: 'categories',
 			component: Categories,
 			props: true
@@ -48,6 +48,9 @@ export default new Router({
 		// 	component: Single,
 		// 	props: true
 		// },
+
+		//   no number  (\\D+)
+		//   only number  (\\d+)
 
 	]
 })
