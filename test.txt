@@ -1,5 +1,7 @@
-ovo je neki red texta
+ovo je neki red texta xxxx
 
 manual conflict resolutiom
 
 nekinovi red
+
+bla bla
