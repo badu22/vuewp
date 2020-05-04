@@ -1,3 +1,5 @@
 ovo je neki red texta
 
 manual conflict resolutiom
+
+nekinovi red
